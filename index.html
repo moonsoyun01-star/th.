@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>그린넥스트 | 청소년이 만드는 푸른 변화</title>
+
+  <!-- 간단한 스타일 & 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green-700: #1E8A59;
+      --green-400: #3CB07A;
+      --blue-600: #2A7DA5;
+      --bg: #F7FBF8;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --radius: 14px;
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg),#eef7f4);
+      color:#08323a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior: smooth;
+    }
+
+    /* layout: full-screen sections with snap */
+    main{
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+      height:100vh;
+    }
+    section{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      scroll-snap-align: start;
+    }
+
+    /* container */
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* Header / nav */
+    header{
+      position:fixed;
+      top:16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 40px);
+      max-width:var(--max-width);
+      z-index:60;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .brand{
+      display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;
+      background:rgba(255,255,255,0.6);backdrop-filter:blur(6px);padding:8px 12px;border-radius:12px;
+    }
+    .logo{
+      display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(135deg,var(--blue-600),var(--green-400));
+      box-shadow: 0 6px 18px rgba(12,43,36,0.12);
+    }
+    .logo svg{display:block}
+    .brand h1{font-size:16px;margin:0;font-weight:700;line-height:1}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{font-weight:600;font-size:14px;color:#05323a;text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.6)}
+    .cta{
+      background:var(--green-700);color:white;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;
+      box-shadow: 0 6px 18px rgba(30,138,89,0.14);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:40px;
+      align-items:center;
+      width:100%;
+      padding:48px;
+    }
+    .hero .lead{
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      border-radius:var(--radius);
+      padding:36px;
+      box-shadow: 0 10px 30px rgba(11,45,40,0.08);
+    }
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(47,128,93,0.12);color:var(--green-700);font-weight:700;font-size:13px}
+    h2{margin:14px 0 8px;font-size:30px;line-height:1.05}
+    p.lead-desc{color:var(--muted);margin:0 0 18px;font-size:15px}
+
+    .hero .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--green-700),var(--green-400));color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(8,50,58,0.06);color:var(--blue-600)}
+
+    /* right card - quick facts */
+    .card{
+      background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 20px rgba(9,37,34,0.05)
+    }
+    .stats{display:flex;gap:12px;flex-wrap:wrap}
+    .stat{flex:1;min-width:140px}
+    .stat h3{margin:0;font-size:18px;color:var(--green-700)}
+    .stat p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* content sections */
+    .two-col{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start}
+    .panel{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px rgba(11,45,40,0.04)}
+    h3.section-title{margin-top:0;color:var(--blue-600)}
+
+    /* carbon diary UI */
+    .diary-form label{display:block;font-weight:600;margin:10px 0 6px;font-size:14px}
+    .diary-form input[type="text"], .diary-form input[type="number"], .diary-form textarea, .diary-form select{
+      width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef0;background:#fbfdfc;font-size:14px;
+    }
+    .actions-row{display:flex;gap:8px;margin-top:12px}
+    .entries{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+    .entry{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfffb);border:1px solid rgba(30,138,89,0.06)}
+    .entry .meta{color:var(--muted);font-size:13px}
+
+    /* campaign sign-up */
+    .signup-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* news cards */
+    .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .news-card{padding:16px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f6fffb);box-shadow:0 8px 20px rgba(12,43,36,0.03)}
+    .news-card h4{margin:0 0 8px}
+    .news-card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* footer / contact */
+    footer{width:100%;padding:36px 20px;background:transparent;color:var(--muted)}
+    .contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef0;background:#fff}
+    .footer-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero, .two-col{grid-template-columns:1fr}
+      .hero .lead{padding:20px}
+      .hero .card{order:2}
+      nav{display:none}
+      header{left:12px;transform:none;width:calc(100% - 24px)}
+    }
+    @media (max-width:520px){
+      h2{font-size:24px}
+      .brand h1{font-size:14px}
+    }
+
+    /* subtle footer small print */
+    .muted-small{color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <!-- fixed header/nav -->
+  <header role="banner">
+    <a class="brand" href="#home" aria-label="그린넥스트 홈">
+      <span class="logo" aria-hidden="true">
+        <!-- minimal flat SVG logo: stylized G + leaf -->
+        <svg width="34" height="34" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/>
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#2A7DA5"/>
+              <stop offset="1" stop-color="#3CB07A"/>
+            </linearGradient>
+          </defs>
+          <!-- G shape -->
+          <path d="M30 18c-5.523 0-10 4.477-10 10s4.477 10 10 10c4.418 0 8.164-2.914 9.456-6.94" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- leaf -->
+          <path d="M17 14c4 1 8 0 11-3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div>
+        <h1>그린넥스트</h1>
+        <p>청소년이 만드는 푸른 변화</p>
+      </div>
+    </a>
+
+    <nav role="navigation" aria-label="주요 섹션">
+      <a href="#about">소개</a>
+      <a href="#diary">핵심활동</a>
+      <a href="#campaign">캠페인참여</a>
+      <a href="#news">뉴스·스토리</a>
+      <a class="cta" href="#support">후원·문의</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO / Intro -->
+    <section id="home" aria-labelledby="home-title">
+      <div
